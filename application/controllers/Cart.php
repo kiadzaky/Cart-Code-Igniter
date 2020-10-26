@@ -34,14 +34,15 @@ class Cart extends CI_Controller{
                     <td>'.number_format($items['price']).'</td>
                     <td>'.$items['qty'].'</td>
                     <td>'.number_format($items['subtotal']).'</td>
-                    <td><button type="button" id="'.$items['rowid'].'" class="hapus_cart btn btn-danger btn-xs">Batal</button></td>
+                    <td><button type="button" id="'.$items['rowid'].'" class="hapus_cart btn btn-danger btn-xs">Hapus</button></td>
                 </tr>
             ';
         }
         $output .= '
             <tr>
-                <th colspan="3">Total</th>
+                <th colspan="2">Total</th>
                 <th colspan="2">'.'Rp '.number_format($this->cart->total()).'</th>
+                <th><button type="button" class="destroy_cart btn btn-danger btn-xs">Batal Beli</button></th>
             </tr>
         ';
         return $output;
@@ -52,13 +53,25 @@ class Cart extends CI_Controller{
     }
  
     function hapus_cart(){ //fungsi untuk menghapus item cart
+        // $data = array(
+        //     'rowid' => $this->input->post('row_id'), 
+        //     'qty' => 0, 
+        // );
+        // $this->cart->update($data);
         $data = array(
             'rowid' => $this->input->post('row_id'), 
             'qty' => 0, 
         );
-        $this->cart->update($data);
+        $this->cart->remove($data['rowid']);
         echo $this->show_cart();
     }
+
+    function hapus_semua()
+    {
+        $this->cart->destroy();
+        echo $this->show_cart();
+    }
+
     function show_content()
     {
         

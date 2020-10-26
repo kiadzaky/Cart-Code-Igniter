@@ -90,6 +90,30 @@
                     });
                 });
             });
+
+            // destroy cart
+            $(document).on('click', '.destroy_cart', function() {
+                $.ajax({
+                    url: '<?= base_url()?>cart/hapus_semua',
+                    method: 'POST',
+                    data: {status : true},
+                    success :function(data){
+                            $('#detail_cart').html(data);
+                        }
+                                        
+                })
+                .done(function() {
+                    // $('#detail_cart').load("<?php echo base_url();?>/cart/load_cart");
+
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+                
+            });
         </script>
     </body>
 </html>
