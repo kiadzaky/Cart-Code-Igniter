@@ -59,4 +59,9 @@ class Cart extends CI_Controller{
         $this->cart->update($data);
         echo $this->show_cart();
     }
+    function show_content()
+    {
+        
+        print_r(json_encode($this->cart->contents()));
+    }
 }

@@ -22,7 +22,7 @@
                                             <h4><?php echo 'Rp '.number_format($row->produk_harga);?></h4>
                                         </div>
                                         <div class="col-md-5">
-                                            <input type="number" name="quantity" id="<?php echo $row->produk_id;?>" value="1" class="quantity form-control">
+                                            <input type="number" name="quantity" id="quantity-<?php echo $row->produk_id;?>" value="1" class="quantity form-control">
                                         </div>
                                     </div>
                                     <button class="add_cart btn btn-success btn-block" data-produkid="<?php echo $row->produk_id;?>" data-produknama="<?php echo $row->produk_nama;?>" data-produkharga="<?php echo $row->produk_harga;?>">Add To Cart</button>
@@ -63,7 +63,7 @@
                     var produk_id    = $(this).data("produkid");
                     var produk_nama  = $(this).data("produknama");
                     var produk_harga = $(this).data("produkharga");
-                    var quantity     = $('#' + produk_id).val();
+                    var quantity     = $('#quantity-' + produk_id).val();
                     $.ajax({
                         url : "<?php echo base_url();?>/cart/add_to_cart",
                         method : "POST",
